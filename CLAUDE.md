@@ -99,7 +99,7 @@ CI 同时使用 `go test -race`，代码必须在 `-race` 下安全。
 
 所有环境变量均以 `FLARE_` 为前缀，由 `caarlos0/env` 解析：
 
-`FLARE_PORT`（5005）、`FLARE_GUIDE`（true）、`FLARE_EDITOR`（true）、`FLARE_OFFLINE`（false）、`FLARE_DEPRECATED_NOTICE`（true）、`FLARE_DISABLE_CSP`（false）、`FLARE_VISIBILITY`（DEFAULT）、`FLARE_DISABLE_LOGIN`（true）、`FLARE_USER`、`FLARE_PASS`、`FLARE_COOKIE_NAME`（`flare`）、`FLARE_COOKIE_SECRET`（`secret` — 生产环境必须覆盖）、`FLARE_COOKIE_SECURE`（`true` — LAN / 纯 HTTP 部署设为 `false`）。
+`FLARE_PORT`（5005）、`FLARE_GUIDE`（true）、`FLARE_EDITOR`（true）、`FLARE_OFFLINE`（false）、`FLARE_DEPRECATED_NOTICE`（true）、`FLARE_DISABLE_CSP`（false）、`FLARE_VISIBILITY`（DEFAULT）、`FLARE_DISABLE_LOGIN`（true）、`FLARE_USER`、`FLARE_PASS`、`FLARE_COOKIE_NAME`（`flare`）、`FLARE_COOKIE_SECRET`（`secret` — 生产环境必须覆盖）、`FLARE_COOKIE_SECURE`（`false` — 适配「内网 HTTP / 公网反代 HTTPS」家用部署；纯 HTTPS 部署时显式设为 `true`）。
 
 运行时数据文件（首次启动在当前工作目录创建）：`config.yml`、`apps.yml`、`bookmarks.yml`。默认值模板见 `config/data/fs.go: getConfigPath` 与 `data/config.go: initAppConfig`。
 
