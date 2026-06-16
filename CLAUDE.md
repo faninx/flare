@@ -74,7 +74,9 @@ server.StartDaemon(&flags)     // 构建路由，启动 http.Server，处理 SIG
 
 - `internal/pool/template_map.go` — 模板渲染 map 的 `sync.Pool`（容量 48）以及 `bytes.Buffer` 池（位于 `internal/resources/templates/templates.go`）。模板渲染是热点路径，所有需要渲染 HTML 的处理器都应使用 `pool.GetTemplateMap()` / `pool.PutTemplateMap(m)`（参考 `internal/pages/home/home.go`）。
 - `internal/i18n/` — 通过 `embed.FS` 加载 `locales/{zh,en}.json`。对外暴露 `T(locale, key)`、`Tf(locale, key, args...)`、`Weekday(locale, w)`、`DateFormat(locale)`。未知 locale 回退到 `en`，再回退到 `zh`；缺失的 key 直接返回 key 本身。模板中通过 `template.FuncMap` 调用 `{{T "key"}}`。
+  - **关键规则**：在 HTML **属性值**里调用 `T` 时，字符串字面量必须用反引号  `key`  而不是 `"key"`，例如 `value="{{ T .Locale \`save_changes\` }}"`。`build/builder/template.go` 启用了 `KeepQuotes=false`，双引号在嵌套场景下会被 minifier 注入前导空格，导致运行时按错 key 查找并原样回显。元素文本里的调用不受影响。
 - `internal/auth/` — 基于 cookie 的会话（`gorilla/sessions` + `labstack/echo-contrib/v5/session`），使用 `crypto/subtle` 做常量时间密码比较。提供 `AuthRequired` 中间件、`CheckUserIsLogin`、`GetUserName`、`GetUserLoginDate`。`DisableLoginMode=true` 时整个模块被跳过。
+  - `gorilla/sessions` v1.4.0 把 `Options.Secure` 默认为 `true` 且 `SameSite=NoneMode`，浏览器在纯 HTTP 下不会回传 session cookie —— LAN / 内网 IP 访问必须把 `FLARE_COOKIE_SECURE` 设为 `false`（同时切到 `SameSite=LaxMode`）。
 - `internal/logger/` — `*slog.Logger` 单例，`init()` 中初始化。日志级别由 `FLARE_DEBUG=on`（环境变量）或 `FLARE_DEBUG`（CLI 标志）控制。Echo 请求日志中间件在 `echo_handler.go`；设置 `FLARE_BASELINE=1` 可关闭请求日志，便于压测。
 - `internal/version/` — 使用 `github.com/soulteary/version-kit`，发布时通过 `-ldflags` 注入。
 
@@ -97,7 +99,7 @@ CI 同时使用 `go test -race`，代码必须在 `-race` 下安全。
 
 所有环境变量均以 `FLARE_` 为前缀，由 `caarlos0/env` 解析：
 
-`FLARE_PORT`（5005）、`FLARE_GUIDE`（true）、`FLARE_EDITOR`（true）、`FLARE_OFFLINE`（false）、`FLARE_DEPRECATED_NOTICE`（true）、`FLARE_DISABLE_CSP`（false）、`FLARE_VISIBILITY`（DEFAULT）、`FLARE_DISABLE_LOGIN`（true）、`FLARE_USER`、`FLARE_PASS`、`FLARE_COOKIE_NAME`（`flare`）、`FLARE_COOKIE_SECRET`（`secret` — 生产环境必须覆盖）。
+`FLARE_PORT`（5005）、`FLARE_GUIDE`（true）、`FLARE_EDITOR`（true）、`FLARE_OFFLINE`（false）、`FLARE_DEPRECATED_NOTICE`（true）、`FLARE_DISABLE_CSP`（false）、`FLARE_VISIBILITY`（DEFAULT）、`FLARE_DISABLE_LOGIN`（true）、`FLARE_USER`、`FLARE_PASS`、`FLARE_COOKIE_NAME`（`flare`）、`FLARE_COOKIE_SECRET`（`secret` — 生产环境必须覆盖）、`FLARE_COOKIE_SECURE`（`true` — LAN / 纯 HTTP 部署设为 `false`）。
 
 运行时数据文件（首次启动在当前工作目录创建）：`config.yml`、`apps.yml`、`bookmarks.yml`。默认值模板见 `config/data/fs.go: getConfigPath` 与 `data/config.go: initAppConfig`。
 
