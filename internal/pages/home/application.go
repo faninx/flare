@@ -2,6 +2,7 @@ package home
 
 import (
 	"html/template"
+	"net/http"
 	"strings"
 	"sync"
 
@@ -15,7 +16,9 @@ var builderPool = sync.Pool{
 	New: func() any { return &strings.Builder{} },
 }
 
-func GenerateApplicationsTemplate(filter string, options *model.Application) template.HTML {
+// readEnvMode is defined in env.go.
+
+func GenerateApplicationsTemplate(filter string, options *model.Application, r *http.Request) template.HTML {
 	if options == nil {
 		op, err := data.GetAllSettingsOptions()
 		if err != nil {
@@ -34,10 +37,13 @@ func GenerateApplicationsTemplate(filter string, options *model.Application) tem
 	b.Reset()
 	defer builderPool.Put(b)
 
+	info := fn.ParseRequestURLTo(r)
+	env := readEnvMode(r)
+
 	n := len(appsData.Items)
 	parseApps := make([]model.Bookmark, 0, n)
 	for _, app := range appsData.Items {
-		app.URL = fn.ParseDynamicUrl(app.URL)
+		app.URL = fn.ResolveBookmarkURL(app.URL, app.LinkPublic, env, &info)
 		parseApps = append(parseApps, app)
 	}
 

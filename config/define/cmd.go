@@ -8,7 +8,6 @@ const (
 	DEFAULT_PORT                     = 5005
 	DEFAULT_ENABLE_GUIDE             = true
 	DEFAULT_ENABLE_DEPRECATED_NOTICE = true
-	DEFAULT_ENABLE_MINI_REQUEST      = false
 	DEFAULT_DISABLE_LOGIN            = true
 	DEFAULT_ENABLE_OFFLINE           = false
 	DEFAULT_USER_NAME                = "flare"
@@ -26,7 +25,6 @@ func GetDefaultEnvVars() model.Envs {
 		Port:                   DEFAULT_PORT,
 		EnableGuide:            DEFAULT_ENABLE_GUIDE,
 		EnableDeprecatedNotice: DEFAULT_ENABLE_DEPRECATED_NOTICE,
-		EnableMinimumRequest:   DEFAULT_ENABLE_MINI_REQUEST,
 		DisableLoginMode:       DEFAULT_DISABLE_LOGIN,
 		EnableOfflineMode:      DEFAULT_ENABLE_OFFLINE,
 		EnableEditor:           DEFAULT_ENABLE_EDITOR,

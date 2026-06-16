@@ -58,7 +58,6 @@ func TestParse(t *testing.T) {
 	expectedFlags.EnableEditor = defaults.EnableEditor
 	expectedFlags.Visibility = defaults.Visibility
 	expectedFlags.EnableDeprecatedNotice = defaults.EnableDeprecatedNotice
-	expectedFlags.EnableMinimumRequest = defaults.EnableMinimumRequest
 	expectedFlags.DisableLoginMode = defaults.DisableLoginMode
 
 	envParser.On("ParseEnvVars").Return(envVars)

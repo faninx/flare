@@ -54,7 +54,6 @@ func defaultFlags() model.Flags {
 		EnableGuide:            env.EnableGuide,
 		EnableEditor:           env.EnableEditor,
 		EnableOfflineMode:      true, // baseline 不依赖外部网络
-		EnableMinimumRequest:   env.EnableMinimumRequest,
 		EnableDeprecatedNotice: env.EnableDeprecatedNotice,
 		DisableCSP:             env.DisableCSP,
 		Visibility:             "DEFAULT",

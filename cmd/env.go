@@ -60,7 +60,6 @@ func ParseEnvVars() (stor model.Flags) {
 	stor.Port = defaults.Port
 	stor.EnableGuide = defaults.EnableGuide
 	stor.EnableDeprecatedNotice = defaults.EnableDeprecatedNotice
-	stor.EnableMinimumRequest = defaults.EnableMinimumRequest
 	stor.DisableLoginMode = defaults.DisableLoginMode
 	stor.Visibility = defaults.Visibility
 	stor.EnableOfflineMode = defaults.EnableOfflineMode

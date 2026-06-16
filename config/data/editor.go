@@ -10,11 +10,12 @@ import (
 
 // TODO Removed after private link feature support
 type _BOOKMARK_REMOVE_PRIVATE struct {
-	Name     string `yaml:"name"`
-	URL      string `yaml:"link"`
-	Icon     string `yaml:"icon,omitempty"`
-	Desc     string `yaml:"desc,omitempty"`
-	Category string `yaml:"category,omitempty"`
+	Name      string `yaml:"name"`
+	URL       string `yaml:"link"`
+	URLPublic string `yaml:"link_public,omitempty"`
+	Icon      string `yaml:"icon,omitempty"`
+	Desc      string `yaml:"desc,omitempty"`
+	Category  string `yaml:"category,omitempty"`
 }
 
 func removePrivateProp(input []model.Bookmark) (result []_BOOKMARK_REMOVE_PRIVATE) {
@@ -22,6 +23,7 @@ func removePrivateProp(input []model.Bookmark) (result []_BOOKMARK_REMOVE_PRIVAT
 		var dest _BOOKMARK_REMOVE_PRIVATE
 		dest.Name = src.Name
 		dest.URL = src.URL
+		dest.URLPublic = src.LinkPublic
 		dest.Icon = src.Icon
 		dest.Desc = src.Desc
 		dest.Category = src.Category
@@ -35,6 +37,7 @@ func restorePrivateProp(input []_BOOKMARK_REMOVE_PRIVATE) (result []model.Bookma
 		var dest model.Bookmark
 		dest.Name = src.Name
 		dest.URL = src.URL
+		dest.LinkPublic = src.URLPublic
 		dest.Icon = src.Icon
 		dest.Desc = src.Desc
 		dest.Category = src.Category
@@ -90,7 +93,7 @@ func getCategoriesFromCSV(input string) (result []model.Category, err error) {
 }
 
 func getBookmarksFromCSV(input string, categories []model.Category) (favoriteBookmarks []model.Bookmark, normalBookmarks []model.Bookmark, err error) {
-	var fixHead = []byte("ID,Name,URL,Category,Icon,Desc\n" + input)
+	var fixHead = []byte("ID,Name,URL,URLPublic,Category,Icon,Desc\n" + input)
 	var decode []_BOOKMARK_REMOVE_PRIVATE
 
 	if err := csvutil.Unmarshal(fixHead, &decode); err != nil {

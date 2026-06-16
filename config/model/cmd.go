@@ -10,7 +10,6 @@ type Flags struct {
 	EnableGuide            bool
 	EnableEditor           bool
 	EnableOfflineMode      bool
-	EnableMinimumRequest   bool
 	EnableDeprecatedNotice bool
 	DisableCSP             bool
 
@@ -31,7 +30,6 @@ type Envs struct {
 	EnableGuide            bool `env:"FLARE_GUIDE"`
 	EnableEditor           bool `env:"FLARE_EDITOR"`
 	EnableOfflineMode      bool `env:"FLARE_OFFLINE"`
-	EnableMinimumRequest   bool `env:"FLARE_MINI_REQUEST"`
 	EnableDeprecatedNotice bool `env:"FLARE_DEPRECATED_NOTICE"`
 	DisableCSP             bool `env:"FLARE_DISABLE_CSP,unset"`
 
@@ -50,7 +48,6 @@ type EnvFile struct {
 	EnableGuide            bool `ini:"FLARE_GUIDE,omitempty"`
 	EnableEditor           bool `ini:"FLARE_EDITOR,omitempty"`
 	EnableOfflineMode      bool `ini:"FLARE_OFFLINE,omitempty"`
-	EnableMinimumRequest   bool `ini:"FLARE_MINI_REQUEST,omitempty"`
 	EnableDeprecatedNotice bool `ini:"FLARE_DEPRECATED_NOTICE,omitempty"`
 	DisableCSP             bool `env:"FLARE_DISABLE_CSP,unset"`
 

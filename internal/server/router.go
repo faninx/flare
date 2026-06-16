@@ -51,15 +51,13 @@ func NewRouter(appFlags *model.Flags) (http.Handler, error) {
 	assets.RegisterRouting(e)
 	health.RegisterRouting(e)
 	home.RegisterRouting(e)
+	home.RegisterEnvRouting(e)
 	settings.RegisterRouting(e)
 	theme.RegisterRouting(e)
 	weather.RegisterRouting(e)
 	search.RegisterRouting(e)
 	appearance.RegisterRouting(e)
 	others.RegisterRouting(e)
-	if err := mdi.Init(); err != nil {
-		return nil, fmt.Errorf("初始化 MDI 资源: %w", err)
-	}
 	mdi.RegisterRouting(e)
 	redir.RegisterRouting(e)
 	if define.AppFlags.EnableGuide {

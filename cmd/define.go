@@ -4,10 +4,6 @@ const (
 	_KEY_PORT       = "port"
 	_KEY_PORT_SHORT = "p"
 
-	_KEY_MINI_REQUEST       = "mini_request"
-	_KEY_MINI_REQUEST_SHORT = "m"
-	_KEY_MINI_REQUEST_OLD   = "mr"
-
 	_KEY_DISABLE_LOGIN       = "disable_login"
 	_KEY_DISABLE_LOGIN_SHORT = "l"
 	_KEY_DISABLE_LOGIN_OLD   = "nologin"

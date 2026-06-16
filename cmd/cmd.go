@@ -21,7 +21,6 @@ func Parse() model.Flags {
 
 	log := logger.GetLogger()
 	log.Info("程序服务端口", slog.Int(_KEY_PORT, resolved.Port))
-	log.Info("页面请求合并", slog.Bool(_KEY_MINI_REQUEST, resolved.EnableMinimumRequest))
 	log.Info("启用离线模式", slog.Bool(_KEY_ENABLE_OFFLINE, resolved.EnableOfflineMode))
 	if resolved.DisableLoginMode {
 		log.Info("已禁用登陆模式，用户可直接调整应用设置。")

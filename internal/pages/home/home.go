@@ -151,6 +151,8 @@ func renderHelp(c *echo.Context) error {
 	m["OptionShowBookmarks"] = false
 	m["OptionHideSettingsButton"] = options.HideSettingsButton
 	m["OptionHideHelpButton"] = options.HideHelpButton
+	m["EnvMode"] = readEnvMode(c.Request()).String()
+	putEnvToggleFields(m, readEnvMode(c.Request()), locale)
 	return c.Render(http.StatusOK, "home.html", m)
 }
 
@@ -243,12 +245,14 @@ func pageBookmark(c *echo.Context) error {
 	m["BookmarksURI"] = define.RegularPages.Bookmarks.Path
 	m["ApplicationsURI"] = define.RegularPages.Applications.Path
 	m["SettingsURI"] = define.RegularPages.Settings.Path
-	m["Bookmarks"] = GenerateBookmarkTemplate("", &options)
+	m["Bookmarks"] = GenerateBookmarkTemplate("", &options, c.Request())
 	m["OptionTitle"] = options.Title
 	m["OptionOpenBookmarkNewTab"] = options.OpenBookmarkNewTab
 	m["OptionShowBookmarks"] = options.ShowBookmarks
 	m["OptionHideSettingsButton"] = options.HideSettingsButton
 	m["OptionHideHelpButton"] = options.HideHelpButton
+	m["EnvMode"] = readEnvMode(c.Request()).String()
+	putEnvToggleFields(m, readEnvMode(c.Request()), locale)
 	return c.Render(http.StatusOK, "home.html", m)
 }
 
@@ -270,7 +274,7 @@ func pageApplication(c *echo.Context) error {
 	m["BookmarksURI"] = define.RegularPages.Bookmarks.Path
 	m["ApplicationsURI"] = define.RegularPages.Applications.Path
 	m["SettingsURI"] = define.RegularPages.Settings.Path
-	m["Applications"] = GenerateApplicationsTemplate("", &options)
+	m["Applications"] = GenerateApplicationsTemplate("", &options, c.Request())
 	m["PageName"] = i18n.T(locale, "page_apps")
 	m["SubPage"] = true
 	m["PageAppearance"] = define.GetAppBodyStyle()
@@ -279,6 +283,8 @@ func pageApplication(c *echo.Context) error {
 	m["OptionShowApps"] = options.ShowApps
 	m["OptionHideSettingsButton"] = options.HideSettingsButton
 	m["OptionHideHelpButton"] = options.HideHelpButton
+	m["EnvMode"] = readEnvMode(c.Request()).String()
+	putEnvToggleFields(m, readEnvMode(c.Request()), locale)
 	return c.Render(http.StatusOK, "home.html", m)
 }
 
@@ -333,8 +339,8 @@ func render(c *echo.Context, filter string) error {
 	m["BookmarksURI"] = define.RegularPages.Bookmarks.Path
 	m["ApplicationsURI"] = define.RegularPages.Applications.Path
 	m["SettingsURI"] = define.RegularPages.Settings.Path
-	m["Applications"] = GenerateApplicationsTemplate(filter, &options)
-	m["Bookmarks"] = GenerateBookmarkTemplate(filter, &options)
+	m["Applications"] = GenerateApplicationsTemplate(filter, &options, c.Request())
+	m["Bookmarks"] = GenerateBookmarkTemplate(filter, &options, c.Request())
 	m["SearchKeyword"] = template.HTML(searchKeyword)
 	m["HasKeyword"] = hasKeyword
 	m["ShowSearchComponent"] = options.ShowSearchComponent
@@ -350,5 +356,7 @@ func render(c *echo.Context, filter string) error {
 	m["OptionHideSettingsButton"] = options.HideSettingsButton
 	m["OptionHideHelpButton"] = options.HideHelpButton
 	m["BodyClassName"] = template.HTMLAttr(bodyClassName)
+	m["EnvMode"] = readEnvMode(c.Request()).String()
+	putEnvToggleFields(m, readEnvMode(c.Request()), locale)
 	return c.Render(http.StatusOK, "home.html", m)
 }

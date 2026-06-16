@@ -2,6 +2,7 @@ package home
 
 import (
 	"html/template"
+	"net/http"
 	"strings"
 
 	"github.com/soulteary/flare/config/data"
@@ -10,7 +11,7 @@ import (
 	"github.com/soulteary/flare/internal/resources/mdi"
 )
 
-func GenerateBookmarkTemplate(filter string, options *model.Application) template.HTML {
+func GenerateBookmarkTemplate(filter string, options *model.Application, r *http.Request) template.HTML {
 	if options == nil {
 		op, err := data.GetAllSettingsOptions()
 		if err != nil {
@@ -29,10 +30,13 @@ func GenerateBookmarkTemplate(filter string, options *model.Application) templat
 	b.Reset()
 	defer builderPool.Put(b)
 
+	info := fn.ParseRequestURLTo(r)
+	env := readEnvMode(r)
+
 	n := len(bookmarksData.Items)
 	parseBookmarks := make([]model.Bookmark, 0, n)
 	for _, bookmark := range bookmarksData.Items {
-		bookmark.URL = fn.ParseDynamicUrl(bookmark.URL)
+		bookmark.URL = fn.ResolveBookmarkURL(bookmark.URL, bookmark.LinkPublic, env, &info)
 		parseBookmarks = append(parseBookmarks, bookmark)
 	}
 

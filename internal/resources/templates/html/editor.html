@@ -97,7 +97,7 @@
         let instanceBookmarks = new Handsontable(container, {
             language: 'zh-CN',
             data: Array.from(bookmarks),
-            colHeaders: ['书签名称', '书签地址', /*'私密',*/ '类型', '图标', '描述'],
+            colHeaders: ['书签名称', '书签地址', '书签地址(公网)', /*'私密',*/ '类型', '图标', '描述'],
             rowHeaders: true,
             manualRowMove: true,
             contextMenu: ["row_above", "row_below", "---------", "undo", "redo", "---------", "cut", "copy"],
@@ -139,6 +139,7 @@
             return [
                 { data: 'Name' },
                 { data: 'URL' },
+                { data: 'URLPublic' },
                 // { data: 'Private', type: 'checkbox' },
                 { data: 'Category', editor: 'select', selectOptions: FLARE_FIX_CATEGORY.concat(categories.map(item => item.Name)), allowInvalid: false },
                 { data: 'Icon', renderer: coverRenderer },

@@ -27,10 +27,6 @@ func GetCliFlags() (*model.Flags, *flags.FlagSet) {
 	options.BoolVarP(&cliFlags.EnableGuide, _KEY_ENABLE_GUIDE, _KEY_ENABLE_GUIDE_SHORT, define.DEFAULT_ENABLE_GUIDE, "启用应用向导")
 	// visibility
 	options.StringVarP(&cliFlags.Visibility, _KEY_VISIBILITY, _KEY_VISIBILITY_SHORT, define.DEFAULT_VISIBILITY, "调整网站整体可见性")
-	// mini_request
-	options.BoolVarP(&cliFlags.EnableMinimumRequest, _KEY_MINI_REQUEST, _KEY_MINI_REQUEST_SHORT, define.DEFAULT_ENABLE_MINI_REQUEST, "使用请求最小化模式")
-	options.BoolVar(&cliFlags.EnableMinimumRequest, _KEY_MINI_REQUEST_OLD, define.DEFAULT_ENABLE_MINI_REQUEST, "使用请求最小化模式")
-	_ = options.MarkDeprecated(_KEY_MINI_REQUEST_OLD, "please use --"+_KEY_MINI_REQUEST+" instead")
 	// offline
 	options.BoolVarP(&cliFlags.EnableOfflineMode, _KEY_ENABLE_OFFLINE, _KEY_ENABLE_OFFLINE_SHORT, define.DEFAULT_ENABLE_OFFLINE, "启用离线模式")
 	// disable_login
@@ -104,7 +100,6 @@ func parseCLI(baseFlags model.Flags) model.Flags {
 	}
 	baseFlags.Port = port
 
-	baseFlags.EnableMinimumRequest = configutil.ResolveBoolPflag(fs, _KEY_MINI_REQUEST, "", baseFlags.EnableMinimumRequest)
 	baseFlags.DisableLoginMode = configutil.ResolveBoolPflag(fs, _KEY_DISABLE_LOGIN, "", baseFlags.DisableLoginMode)
 	baseFlags.DisableCSP = configutil.ResolveBoolPflag(fs, _KEY_DISABLE_CSP, "", baseFlags.DisableCSP)
 
