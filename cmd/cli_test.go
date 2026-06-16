@@ -5,8 +5,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/soulteary/flare/cmd"
-	"github.com/soulteary/flare/config/define"
+	"github.com/faninx/flare/cmd"
+	"github.com/faninx/flare/config/define"
 	"github.com/stretchr/testify/assert"
 )
 

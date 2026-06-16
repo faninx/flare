@@ -48,7 +48,7 @@ formatters:
       simplify: true
     goimports:
       local-prefixes:
-        - github.com/soulteary/flare
+        - github.com/faninx/flare
   exclusions:
     generated: lax
     paths:

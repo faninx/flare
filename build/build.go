@@ -1,7 +1,7 @@
 package main
 
 import (
-	builder "github.com/soulteary/flare/build/builder"
+	builder "github.com/faninx/flare/build/builder"
 )
 
 func main() {

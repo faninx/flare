@@ -1,7 +1,7 @@
 package data
 
 import (
-	"github.com/soulteary/flare/config/model"
+	"github.com/faninx/flare/config/model"
 )
 
 func GetThemeName() string {

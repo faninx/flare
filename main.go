@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/soulteary/flare/cmd"
-	"github.com/soulteary/flare/internal/server"
+	"github.com/faninx/flare/cmd"
+	"github.com/faninx/flare/internal/server"
 )
 
 func main() {

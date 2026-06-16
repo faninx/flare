@@ -6,9 +6,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/soulteary/flare/cmd"
-	"github.com/soulteary/flare/config/define"
-	"github.com/soulteary/flare/config/model"
+	"github.com/faninx/flare/cmd"
+	"github.com/faninx/flare/config/define"
+	"github.com/faninx/flare/config/model"
 	version "github.com/soulteary/version-kit"
 	flags "github.com/spf13/pflag"
 	"github.com/stretchr/testify/assert"

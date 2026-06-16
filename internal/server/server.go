@@ -10,8 +10,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/soulteary/flare/config/model"
-	"github.com/soulteary/flare/internal/logger"
+	"github.com/faninx/flare/config/model"
+	"github.com/faninx/flare/internal/logger"
 )
 
 func StartDaemon(AppFlags *model.Flags) {

@@ -5,10 +5,10 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/soulteary/flare/config/data"
-	"github.com/soulteary/flare/config/model"
-	"github.com/soulteary/flare/internal/fn"
-	"github.com/soulteary/flare/internal/resources/mdi"
+	"github.com/faninx/flare/config/data"
+	"github.com/faninx/flare/config/model"
+	"github.com/faninx/flare/internal/fn"
+	"github.com/faninx/flare/internal/resources/mdi"
 )
 
 func GenerateBookmarkTemplate(filter string, options *model.Application, r *http.Request) template.HTML {

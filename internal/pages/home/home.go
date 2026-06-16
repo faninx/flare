@@ -9,14 +9,14 @@ import (
 
 	"github.com/labstack/echo/v5"
 
-	"github.com/soulteary/flare/config/data"
-	"github.com/soulteary/flare/config/define"
-	"github.com/soulteary/flare/config/model"
-	"github.com/soulteary/flare/internal/auth"
-	"github.com/soulteary/flare/internal/fn"
-	"github.com/soulteary/flare/internal/i18n"
-	"github.com/soulteary/flare/internal/pool"
-	"github.com/soulteary/flare/internal/settings/weather"
+	"github.com/faninx/flare/config/data"
+	"github.com/faninx/flare/config/define"
+	"github.com/faninx/flare/config/model"
+	"github.com/faninx/flare/internal/auth"
+	"github.com/faninx/flare/internal/fn"
+	"github.com/faninx/flare/internal/i18n"
+	"github.com/faninx/flare/internal/pool"
+	"github.com/faninx/flare/internal/settings/weather"
 	weatherip "github.com/soulteary/funny-china-weather"
 )
 

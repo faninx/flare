@@ -10,8 +10,8 @@ import (
 	version "github.com/soulteary/version-kit"
 	flags "github.com/spf13/pflag"
 
-	"github.com/soulteary/flare/config/define"
-	"github.com/soulteary/flare/config/model"
+	"github.com/faninx/flare/config/define"
+	"github.com/faninx/flare/config/model"
 )
 
 var flagsMapTrimValue = regexp.MustCompile(`=.*`)

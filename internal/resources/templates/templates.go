@@ -9,8 +9,8 @@ import (
 
 	"github.com/labstack/echo/v5"
 
-	"github.com/soulteary/flare/config/define"
-	"github.com/soulteary/flare/internal/i18n"
+	"github.com/faninx/flare/config/define"
+	"github.com/faninx/flare/internal/i18n"
 )
 
 //go:embed html

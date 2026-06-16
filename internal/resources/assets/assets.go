@@ -11,7 +11,7 @@ import (
 
 	"github.com/labstack/echo/v5"
 
-	"github.com/soulteary/flare/config/define"
+	"github.com/faninx/flare/config/define"
 )
 
 //go:embed favicon.ico

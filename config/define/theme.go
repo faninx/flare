@@ -5,8 +5,8 @@ package define
 import (
 	"html/template"
 
-	"github.com/soulteary/flare/config/data"
-	"github.com/soulteary/flare/config/model"
+	"github.com/faninx/flare/config/data"
+	"github.com/faninx/flare/config/model"
 )
 
 // 程序运行默认使用内置的主题配色

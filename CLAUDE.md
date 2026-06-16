@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Flare** 是一个用 Go（Golang）编写的自托管书签 / 起始页应用，前端只使用少量原生 JavaScript。HTTP 层使用 **Echo v5** 框架，以单一可执行文件形式分发，不依赖任何数据库（状态以 YAML 文件保存），并将**性能**（QPS、内存分配、延迟）作为核心设计约束。
 
-- 模块路径：`github.com/soulteary/flare`
+- 模块路径：`github.com/faninx/flare`
 - Go 版本：`1.26.0`（CI 中 `GO_VERSION: "1.26.0"`）
 
 ## 常用命令
@@ -91,7 +91,7 @@ CI 同时使用 `go test -race`，代码必须在 `-race` 下安全。
 
 ## 静态检查
 
-`.golangci.yml` 使用 **v2** 格式，启用 `gofmt -s`（simplify 模式）、`errcheck`（含 type-assertion 与 blank 检查）以及 `govet enable-all`（关闭 `fieldalignment`）。`errcheck` 在测试文件、`build/`、`tools/` 以及 `cmd/cli.go` 中的特定 pflag 调用处被排除。`goimports` 的本地前缀：`github.com/soulteary/flare`。
+`.golangci.yml` 使用 **v2** 格式，启用 `gofmt -s`（simplify 模式）、`errcheck`（含 type-assertion 与 blank 检查）以及 `govet enable-all`（关闭 `fieldalignment`）。`errcheck` 在测试文件、`build/`、`tools/` 以及 `cmd/cli.go` 中的特定 pflag 调用处被排除。`goimports` 的本地前缀：`github.com/faninx/flare`。
 
 ## 主要配置项（高频关注）
 

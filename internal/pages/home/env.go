@@ -6,8 +6,8 @@ import (
 
 	"github.com/labstack/echo/v5"
 
-	"github.com/soulteary/flare/internal/fn"
-	"github.com/soulteary/flare/internal/i18n"
+	"github.com/faninx/flare/internal/fn"
+	"github.com/faninx/flare/internal/i18n"
 )
 
 // envCookieMaxAge is how long the chosen environment override persists, in seconds (30 days).

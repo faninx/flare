@@ -16,10 +16,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/soulteary/flare/config/data"
-	"github.com/soulteary/flare/config/define"
-	"github.com/soulteary/flare/config/model"
-	"github.com/soulteary/flare/internal/server"
+	"github.com/faninx/flare/config/data"
+	"github.com/faninx/flare/config/define"
+	"github.com/faninx/flare/config/model"
+	"github.com/faninx/flare/internal/server"
 )
 
 type scenario struct {

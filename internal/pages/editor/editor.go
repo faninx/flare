@@ -9,10 +9,10 @@ import (
 	"github.com/labstack/echo/v5"
 	"github.com/soulteary/memfs"
 
-	"github.com/soulteary/flare/config/data"
-	"github.com/soulteary/flare/config/define"
-	"github.com/soulteary/flare/internal/auth"
-	"github.com/soulteary/flare/internal/pool"
+	"github.com/faninx/flare/config/data"
+	"github.com/faninx/flare/config/define"
+	"github.com/faninx/flare/internal/auth"
+	"github.com/faninx/flare/internal/pool"
 )
 
 var MemFs *memfs.FS

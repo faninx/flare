@@ -3,7 +3,7 @@ package data
 import (
 	"testing"
 
-	"github.com/soulteary/flare/config/model"
+	"github.com/faninx/flare/config/model"
 )
 
 func TestGetBookmarksDataAsJSON(t *testing.T) {

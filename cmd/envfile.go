@@ -5,10 +5,10 @@ import (
 	"os"
 	"strings"
 
-	"github.com/soulteary/flare/config/define"
-	"github.com/soulteary/flare/config/model"
-	"github.com/soulteary/flare/internal/fn"
-	"github.com/soulteary/flare/internal/logger"
+	"github.com/faninx/flare/config/define"
+	"github.com/faninx/flare/config/model"
+	"github.com/faninx/flare/internal/fn"
+	"github.com/faninx/flare/internal/logger"
 	"gopkg.in/ini.v1"
 )
 

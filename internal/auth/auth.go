@@ -12,7 +12,7 @@ import (
 	session "github.com/labstack/echo-contrib/v5/session"
 	"github.com/labstack/echo/v5"
 
-	"github.com/soulteary/flare/config/define"
+	"github.com/faninx/flare/config/define"
 )
 
 const (

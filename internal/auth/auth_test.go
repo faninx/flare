@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	"github.com/labstack/echo/v5"
-	"github.com/soulteary/flare/config/define"
-	"github.com/soulteary/flare/config/model"
+	"github.com/faninx/flare/config/define"
+	"github.com/faninx/flare/config/model"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

@@ -1,7 +1,7 @@
 package define
 
 import (
-	"github.com/soulteary/flare/config/model"
+	"github.com/faninx/flare/config/model"
 )
 
 const (

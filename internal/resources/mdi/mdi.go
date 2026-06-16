@@ -7,7 +7,7 @@ import (
 
 	"github.com/labstack/echo/v5"
 
-	"github.com/soulteary/flare/config/define"
+	"github.com/faninx/flare/config/define"
 )
 
 // _CACHE_MDI_ICON_DATA caches inline SVG snippets keyed by icon name.
