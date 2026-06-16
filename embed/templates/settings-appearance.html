@@ -12,12 +12,12 @@
         </div>
         <div class="form-group">
             <label for="settings-title">{{ T .Locale "custom_title" }}</label>
-            <input type="text" name="title" id="settings-title" class="option-input" placeholder="{{ T .Locale "site_title_placeholder" }}" value="{{.OptionTitle}}">
+            <input type="text" name="title" id="settings-title" class="option-input" placeholder="{{ T .Locale `site_title_placeholder` }}" value="{{.OptionTitle}}">
         </div>
 
         <div class="form-group">
             <label for="settings-footer">{{ T .Locale "custom_footer" }}</label>
-            <textarea name="footer" id="settings-footer" class="option-input" cols="30" rows="10" placeholder="{{ T .Locale "footer_placeholder" }}">{{.OptionFooter}}</textarea>
+            <textarea name="footer" id="settings-footer" class="option-input" cols="30" rows="10" placeholder="{{ T .Locale `footer_placeholder` }}">{{.OptionFooter}}</textarea>
             <p class="help-text">{{ T .Locale "footer_help" }}</p>
         </div>
 
@@ -117,7 +117,7 @@
         {{ if .OptionShowTitle }}
         <div class="form-group">
             <label for="settings-custom-greetings">{{ T .Locale "custom_greetings" }}</label>
-            <input type="text" name="greetings" id="settings-custom-greetings" class="option-input" placeholder="{{ T .Locale "greetings_placeholder" }}" value="{{.OptionGreetings}}">
+            <input type="text" name="greetings" id="settings-custom-greetings" class="option-input" placeholder="{{ T .Locale `greetings_placeholder` }}" value="{{.OptionGreetings}}">
             <p class="help-text">{{ T .Locale "greetings_help" }}</p>
         </div>
         {{ end }}
@@ -198,7 +198,7 @@
         </div>
 
         <div class="form-group">
-            <input class="btn-submit" type="submit" value="{{ T .Locale "save_changes" }}" />
+            <input class="btn-submit" type="submit" value="{{ T .Locale `save_changes` }}" />
         </div>
     </form>
 
