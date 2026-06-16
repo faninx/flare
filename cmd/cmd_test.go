@@ -61,6 +61,7 @@ func TestParse(t *testing.T) {
 	expectedFlags.DisableLoginMode = defaults.DisableLoginMode
 	expectedFlags.CookieName = defaults.CookieName
 	expectedFlags.CookieSecret = defaults.CookieSecret
+	expectedFlags.CookieSecure = defaults.CookieSecure
 
 	envParser.On("ParseEnvVars").Return(envVars)
 	envParser.On("ParseEnvFile", envVars).Return(parsedEnvs)

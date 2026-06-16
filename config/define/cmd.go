@@ -17,6 +17,7 @@ const (
 
 	DEFAULT_COOKIE_NAME   = "flare"
 	DEFAULT_COOKIE_SECRET = "secret"
+	DEFAULT_COOKIE_SECURE = true
 )
 
 // get default env config
@@ -36,6 +37,7 @@ func GetDefaultEnvVars() model.Envs {
 
 		CookieName:   DEFAULT_COOKIE_NAME,
 		CookieSecret: DEFAULT_COOKIE_SECRET,
+		CookieSecure: DEFAULT_COOKIE_SECURE,
 	}
 }
 

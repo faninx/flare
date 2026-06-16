@@ -31,4 +31,7 @@ const (
 
 	_KEY_COOKIE_SECRET       = "cookie_secret"
 	_KEY_COOKIE_SECRET_SHORT = "r"
+
+	_KEY_COOKIE_SECURE       = "cookie_secure"
+	_KEY_COOKIE_SECURE_SHORT = "R"
 )

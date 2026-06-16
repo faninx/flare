@@ -22,6 +22,7 @@ type Flags struct {
 
 	CookieName   string
 	CookieSecret string
+	CookieSecure bool
 }
 
 // Application Envs Data Model
@@ -40,6 +41,7 @@ type Envs struct {
 
 	CookieName   string `env:"FLARE_COOKIE_NAME"`
 	CookieSecret string `env:"FLARE_COOKIE_SECRET"`
+	CookieSecure bool   `env:"FLARE_COOKIE_SECURE"`
 }
 
 // Application Envfile Data Model
@@ -58,4 +60,5 @@ type EnvFile struct {
 
 	CookieName   string `ini:"FLARE_COOKIE_NAME,omitempty"`
 	CookieSecret string `ini:"FLARE_COOKIE_SECRET,omitempty"`
+	CookieSecure bool   `ini:"FLARE_COOKIE_SECURE,omitempty"`
 }

@@ -35,6 +35,17 @@ func RequestHandle(e *echo.Echo) {
 			log.Println("[auth] 警告: 已启用登录但 CookieSecret 仍为默认值，生产环境请通过 FLARE_COOKIE_SECRET 或 --cookie-secret 设置强密钥")
 		}
 		store := sessions.NewCookieStore([]byte(define.AppFlags.CookieSecret))
+		store.Options = &sessions.Options{
+			Path:   "/",
+			MaxAge: 86400 * 30,
+		}
+		if define.AppFlags.CookieSecure {
+			store.Options.Secure = true
+			store.Options.SameSite = http.SameSiteNoneMode
+		} else {
+			store.Options.Secure = false
+			store.Options.SameSite = http.SameSiteLaxMode
+		}
 		e.Use(session.Middleware(store))
 		e.POST(define.MiscPages.Login.Path, login)
 		e.POST(define.MiscPages.Logout.Path, logout)
