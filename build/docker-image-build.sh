@@ -1,5 +1,5 @@
 #!/bin/bash
-VERSION=$(git describe --tags --abbrev=0)
+VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0-dev")
 COMMIT=$(git rev-parse --short HEAD)
 
 echo "最近版本；$VERSION / $COMMIT"
