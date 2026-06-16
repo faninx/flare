@@ -40,6 +40,19 @@ func GenerateBookmarkTemplate(filter string, options *model.Application, r *http
 		parseBookmarks = append(parseBookmarks, bookmark)
 	}
 
+	// In WAN mode, drop bookmarks that have no public URL configured — otherwise the
+	// resolver falls back to the LAN link, which a public-network client cannot reach.
+	// Filtering here (before the search filter) also keeps these items out of search hits.
+	if env == fn.EnvWAN {
+		filtered := parseBookmarks[:0]
+		for _, bookmark := range parseBookmarks {
+			if bookmark.LinkPublic != "" {
+				filtered = append(filtered, bookmark)
+			}
+		}
+		parseBookmarks = filtered
+	}
+
 	bookmarks := parseBookmarks
 	if filter != "" {
 		bookmarks = make([]model.Bookmark, 0, n)

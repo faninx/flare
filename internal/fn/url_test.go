@@ -255,3 +255,29 @@ func TestResolveBookmarkURL_NilInfo(t *testing.T) {
 		t.Errorf("force WAN+nil info should pick link_public; got %q", got)
 	}
 }
+
+func TestShouldHideInWanMode(t *testing.T) {
+	// The four env × linkPublic combinations. Hide is only true when the user has
+	// explicitly chosen WAN mode and there is no public URL configured — the resolver
+	// would otherwise silently fall back to a LAN-only link that fails from a public client.
+	cases := []struct {
+		name       string
+		linkPublic string
+		env        EnvMode
+		want       bool
+	}{
+		{"wan+empty hides (the bug we are preventing)", "", EnvWAN, true},
+		{"wan+public keeps visible", "https://example.com", EnvWAN, false},
+		{"lan+empty keeps visible (LAN link works locally)", "", EnvLAN, false},
+		{"lan+public keeps visible", "https://example.com", EnvLAN, false},
+		{"auto+empty keeps visible (readEnvMode collapses auto to LAN, but the helper stays safe)", "", EnvAuto, false},
+		{"auto+public keeps visible", "https://example.com", EnvAuto, false},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			if got := ShouldHideInWanMode(tc.linkPublic, tc.env); got != tc.want {
+				t.Errorf("ShouldHideInWanMode(%q, %v) = %v, want %v", tc.linkPublic, tc.env, got, tc.want)
+			}
+		})
+	}
+}

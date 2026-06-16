@@ -198,3 +198,22 @@ func ResolveBookmarkURL(link, linkPublic string, env EnvMode, info *DynamicURL) 
 	}
 	return ParseDynamicUrlWith(target, info)
 }
+
+// ShouldHideInWanMode reports whether a bookmark/app should be omitted from the rendered page
+// because the user has explicitly chosen WAN mode but the item has no public URL configured.
+//
+// Why this is a separate function rather than baking the behavior into ResolveBookmarkURL:
+//   - URL resolution (which link to follow) and visibility (whether to render the item at all)
+//     are different concerns. Keeping them split means the existing 6+ ResolveBookmarkURL
+//     unit tests stay valid and the render layer can decide per-context (e.g. show in
+//     search, hide in grid) without changing the resolver.
+//   - Hiding an item whose only link would resolve to a 192.168.x.x address is a UX
+//     safeguard: in WAN mode the resolver falls back to `link` when `linkPublic` is empty,
+//     and clicking that from a public-network client is guaranteed to fail.
+//
+// Only EnvWAN is treated as "public-network context" by this helper: readEnvMode in
+// internal/pages/home/env.go collapses EnvAuto (and unknown cookie values) back to EnvLAN,
+// so in practice this is the only branch that ever reaches the renderers.
+func ShouldHideInWanMode(linkPublic string, env EnvMode) bool {
+	return env == EnvWAN && linkPublic == ""
+}

@@ -47,6 +47,19 @@ func GenerateApplicationsTemplate(filter string, options *model.Application, r *
 		parseApps = append(parseApps, app)
 	}
 
+	// In WAN mode, drop apps that have no public URL configured — otherwise the
+	// resolver falls back to the LAN link, which a public-network client cannot reach.
+	// Filtering here (before the search filter) also keeps these items out of search hits.
+	if env == fn.EnvWAN {
+		filtered := parseApps[:0]
+		for _, app := range parseApps {
+			if app.LinkPublic != "" {
+				filtered = append(filtered, app)
+			}
+		}
+		parseApps = filtered
+	}
+
 	var apps []model.Bookmark
 	if filter != "" {
 		apps = make([]model.Bookmark, 0, n)
