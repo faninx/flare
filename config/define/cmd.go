@@ -17,7 +17,10 @@ const (
 
 	DEFAULT_COOKIE_NAME   = "flare"
 	DEFAULT_COOKIE_SECRET = "secret"
-	DEFAULT_COOKIE_SECURE = true
+	// DEFAULT_COOKIE_SECURE 默认 false：flare 的常见部署是「内网 HTTP / 公网经反代 HTTPS」，
+	// 把 Secure 设成 true 会让浏览器在 LAN HTTP 下不回传 session cookie。需要严格 HTTPS-only 时
+	// 显式把 FLARE_COOKIE_SECURE 设为 true 即可。
+	DEFAULT_COOKIE_SECURE = false
 )
 
 // get default env config

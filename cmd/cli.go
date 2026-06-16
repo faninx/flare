@@ -44,7 +44,7 @@ func GetCliFlags() (*model.Flags, *flags.FlagSet) {
 	// Cookie
 	options.StringVarP(&cliFlags.CookieName, _KEY_COOKIE_NAME, _KEY_COOKIE_NAME_SHORT, define.DEFAULT_COOKIE_NAME, "调整 Cookie 字段名称")
 	options.StringVarP(&cliFlags.CookieSecret, _KEY_COOKIE_SECRET, _KEY_COOKIE_SECRET_SHORT, define.DEFAULT_COOKIE_SECRET, "调整 Cookie 密钥")
-	options.BoolVar(&cliFlags.CookieSecure, _KEY_COOKIE_SECURE, define.DEFAULT_COOKIE_SECURE, "是否仅在 HTTPS 下发送 Cookie；LAN/纯 HTTP 部署设为 false")
+	options.BoolVar(&cliFlags.CookieSecure, _KEY_COOKIE_SECURE, define.DEFAULT_COOKIE_SECURE, "是否仅在 HTTPS 下发送 Cookie；默认 false（兼容 LAN/纯 HTTP 部署），HTTPS-only 部署设为 true")
 
 	_ = options.Parse(os.Args)
 
