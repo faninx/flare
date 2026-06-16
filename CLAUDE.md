@@ -61,6 +61,7 @@ server.StartDaemon(&flags)     // 构建路由，启动 http.Server，处理 SIG
 ### 页面与功能模块
 
 - `internal/pages/home/` — `home.html` 模板，三个页面处理器（home、help、applications、bookmarks），天气缓存（`_CACHE_WEATHER_DATA`），问候语解析器（按 5–10 / 11–13 / 14–18 / 其他 时段切分）。
+  - **LAN/WAN 内外网切换**（fork 增强）：每条 bookmark / app 可在 YAML 里同时配置 `link`（LAN，必填）和 `link_public`（公网，可选）。`internal/fn/url.go: ResolveBookmarkURL` 根据 `flare_env` cookie（`lan` / `wan`，由 `/env?set=...` 写入）选择 URL；`internal/fn/url.go: ShouldHideInWanMode` 在 **显式 WAN 模式**下隐藏未配置 `link_public` 的条目 —— 避免公网客户端点到 `192.168.x.x` 之类的地址。隐藏发生在 `application.go` / `bookmark.go` 的 URL 重写之后、搜索过滤之前，保证搜索结果也不会列出被隐藏项。
 - `internal/pages/editor/` — 基于 CSV 的书签编辑器（受 `EnableEditor` 开关控制）。
 - `internal/pages/guide/` — 首次使用引导页（受 `EnableGuide` 开关控制）。
 - `internal/settings/{theme,weather,search,appearance,others}/` — 每个设置页一个子包，各自注册路由。`settings.go` 本身只是 `/settings` → `/settings/theme` 的重定向。
